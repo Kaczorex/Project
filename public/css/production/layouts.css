@@ -1,0 +1,23 @@
+.product-table{
+	border-left:none;
+	
+}
+.tr-hidden{
+display: none;
+border-left: none;
+}
+.div-hidden{
+	border: 1px solid black; 
+	margin-top:-8px;
+	margin-left:10px;
+	margin-right: -9px;
+	border-top:none;
+}
+.first-td {
+	border-left: 1px solid #ddd;
+	
+}
+.tr-hidden > td:first-child{
+	
+
+}

@@ -1,0 +1,8 @@
+
+
+<center>
+
+{{$event->event}}
+
+</center>
+
