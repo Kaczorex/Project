@@ -13,7 +13,7 @@ class TransportTable extends Migration
      */
     public function up()
     {
-        Schema::create('Transports', function (Blueprint $table){
+        Schema::create('transports', function (Blueprint $table){
             $table->increments('id');
             $table->integer('user_id');
             $table->string('address');

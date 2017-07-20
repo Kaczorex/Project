@@ -13,7 +13,7 @@ class PrefabrykacjaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Prefabrykacjas', function (Blueprint $table) {
+        Schema::create('prefabrykacjas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('company');
             $table->string('product');

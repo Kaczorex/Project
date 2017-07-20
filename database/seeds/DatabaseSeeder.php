@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolesTableSeeder::class);
         $this->call(UserTableSeeder::class);
-        factory(App\Prefabrykacja::class, 250)->create();
+        // factory(App\Prefabrykacja::class, 250)->create();
         // $this->call(UserTableSeeder::class);
         $this->call(TransportTableSeeder::class);
              
