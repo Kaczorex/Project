@@ -11,6 +11,17 @@
 |
 */
 
+/*
+|---------------------------------------------------------------
+|           storage files
+|---------------------------------------------------------------
+|
+|
+|
+*/
+
+
+
 
 
 /*
@@ -21,17 +32,17 @@
 |
 |
 */
-    Route::group([
-        'middleware'=>'roles',
-        'roles' => 'Administrator','Dostawy']
-        ,function () {
-            Route::get('/Efaktury',[
-                'uses'=>'EfakturyController@index',
-                'as'=>'efaktury.index']);
-            Route::post('/Efaktury/create',[
-                'uses'=>'EfakturyController@create',
-                'as'=>'efaktury.create']);
-        });
+Route::group([
+    'middleware'=>'roles',
+    'roles' => 'Administrator','Dostawy']
+    ,function () {
+        Route::get('/Efaktury',[
+            'uses'=>'EfakturyController@index',
+            'as'=>'efaktury.index']);
+        Route::post('/Efaktury/create',[
+            'uses'=>'EfakturyController@create',
+            'as'=>'efaktury.create']);
+    });
 /*
 |---------------------------------------------------------------
 |           PZ
@@ -120,14 +131,16 @@ Route::group([
         Route::post('/Produkcja/create',[
             'uses'=>'ProductionController@create',
             'as'=>'production.create']);
-        Route::get('/Produkcja/file',[
-            'uses'=>'ProductionController@file',
-            'as'=>'production.file']);
-        // Route::get('/Produkcja/file',function() {
-        //     return '<img src='.Storage::disk("Productions")->url("8/2.png").'>';
-        // });
+        Route::get('/Produkcja/file/{id}/{filename}',function ($id , $filename)
+        {
 
-    });
+            $filepath= storage_path().'/app/hide/'.$id.'/'.$filename;
+            $fileContents = File::get($filepath);
+            return Response::download($filepath);
+
+        },['uses' => 'ProductionController@file',
+        'as' => 'production.file']);
+         });
 
 
 
@@ -203,13 +216,13 @@ Route::get('error','ErrorsController@noPermissions')->name('noPermissions');
 */
 
         // Authentication Routes...
-        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-        Route::post('login', 'Auth\LoginController@login');
-        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
         // Registration Routes...
-        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
         // Password Reset Routes...
         // Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');

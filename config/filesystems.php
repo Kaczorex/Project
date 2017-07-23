@@ -54,13 +54,6 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-          'productions' => [
-            'driver' => 'local',
-            'root' => storage_path('app/productions'),
-            'url' => env('APP_URL') . '/productions', // added line (directory within "public")
-            'visibility' => 'public', // modified visibility
-        ],
-
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

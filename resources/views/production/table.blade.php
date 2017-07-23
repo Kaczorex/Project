@@ -21,11 +21,18 @@
 		<div class="col-md-4">1</div>
 		<div class="col-md-4">2</div>
 		<div class="col-md-4">  
-	<img src="{{$img}}" alt="">
-		</div>
+		@foreach($files as $file)
+		<?php  
+			$ext=explode('/',$file);
 
-	</div>
+			if($ext[1]==$product->id)
+			{
+			 echo '<a href="'.url('Produkcja/file/'.$product->id.'/'.$ext[2].'').'">Link </a></div>';	
+			}
+
+		?>
 	
+		@endforeach
 		</td>
 		</tr>
 @endforeach

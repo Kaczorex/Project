@@ -19,23 +19,13 @@ class ProductionController extends Controller
     {
         // dd(Storage::disk('Productions')->allFiles());
 
-
-        $img = Storage::disk('productions')->url('8/2.png"');
-
+       $files = Storage::disk('local')->allFiles('hide');
+       // dd(explode('.', $files[0])[1]);
 
         $products = Production::all();
-        return view('production.index',compact('products','img'));
+        return view('production.index',compact('products','files'));
     }
-    public function file()
-    {
 
-       Storage::disk('productions')->put('file.txt', 'Contents');
-
-       return '<img src="'.Storage::disk('productions')->url('7/2.png').'">';
-       // return Storage::disk('local')->url('Productions/8/2.png');
-
-
-   }
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +37,7 @@ class ProductionController extends Controller
        
        $create=Production::create($request->all());
 
-       $request->file('file')->store('Productions/'.$create->id);
+       $request->file('file')->store('hide/'.$create->id);
 
        return redirect()->route('production.index');
 
