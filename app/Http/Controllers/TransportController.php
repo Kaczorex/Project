@@ -17,9 +17,8 @@ class TransportController extends Controller
 
 
     public function index() {
-
-        // dd();
-
+     
+        
 
     	$date = date('Y-m-d');
 

@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('transport.index');
+       return redirect()->route('transport.index');
     }
 }

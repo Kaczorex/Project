@@ -180,6 +180,7 @@ Route::group([
 |
 */
 
+
 Route::get('/home', 'HomeController@index', [
     'uses' => 'HomeController@index',
     'as' => 'home']);
@@ -187,6 +188,10 @@ Route::get('/home', 'HomeController@index', [
 Route::get('/', 'HomeController@index', [
     'uses' => 'HomeController@index',
     'as' => 'home.index']);
+
+
+Route::get('error','ErrorsController@noPermissions')->name('noPermissions');
+
 
 /*
 |---------------------------------------------------------------
