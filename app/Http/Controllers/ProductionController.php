@@ -18,13 +18,11 @@ class ProductionController extends Controller
     public function index()
     {
         // dd(Storage::disk('Productions')->allFiles());
-
-       $files = Storage::disk('local')->allFiles('hide');
+     $files = Storage::disk('local')->allFiles('hide');
        // dd(explode('.', $files[0])[1]);
-
-        $products = Production::all();
-        return view('production.index',compact('products','files'));
-    }
+     $products = Production::all();
+     return view('production.index',compact('products','files'));
+ }
 
 
     /**
@@ -34,14 +32,13 @@ class ProductionController extends Controller
      */
     public function create(ProductionRequest $request)
     {
-       
-       $create=Production::create($request->all());
+        $create=Production::create($request->all());
 
-       $request->file('file')->store('hide/'.$create->id);
+        $request->file('file')->storeAs('hide/'.$create->id,$request->file('file')->getClientOriginalName());
 
-       return redirect()->route('production.index');
+        return redirect()->route('production.index');
 
-   }
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -49,9 +46,11 @@ class ProductionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addFile(ProductionRequest $request,$id)
     {
-        //
+       
+        $request->file('file')->storeAs('hide/'.$id,$request->file('file')->getClientOriginalName());
+        return redirect()->route('production.index');
     }
 
     /**

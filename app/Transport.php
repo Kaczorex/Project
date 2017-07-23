@@ -43,45 +43,45 @@ class Transport extends Model
 
 
 
-  static function priority($request){
-   switch ($request) {
-    case '0':
+static function priority($request){
+ switch ($request) {
+  case '0':
 
-    return 'Normalny';
-    break;
-    case '1':
+  return 'Normalny';
+  break;
+  case '1':
 
-    return 'Priorytet';
-    break;
-  }
+  return 'Priorytet';
+  break;
+}
 }
 
-  static function timeOfDay($request){
-   switch ($request) {
-    case '0':
-    return 'Cały dzień';
-    break;
+static function timeOfDay($request){
+ switch ($request) {
+  case '0':
+  return 'Cały dzień';
+  break;
 
-    case '1':
-    return 'Rano';
-    break;
+  case '1':
+  return 'Rano';
+  break;
 
-    case '2':
-    return 'Po południu';
-    break;
-  }
+  case '2':
+  return 'Po południu';
+  break;
+}
 }
 
-  static function drivers($id){
+static function drivers($id){
 
-    if ($id=='0'){
-      return '';
-    }
-    else {
-       return Auth::user()->id($id)->name;
-    }
-  
-
+  if ($id=='0'){
+    return '';
   }
+  else {
+   return Auth::user()->id($id)->name;
+ }
+ 
+
+}
 
 }

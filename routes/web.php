@@ -140,7 +140,11 @@ Route::group([
 
         },['uses' => 'ProductionController@file',
         'as' => 'production.file']);
-         });
+
+        Route::POST('/Produkcja/addFile/{id}',[
+            'uses' => 'ProductionController@addFile',
+            'as' => 'production.addFile']);
+    });
 
 
 
