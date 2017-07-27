@@ -48,11 +48,10 @@ class ProductionController extends Controller
      */
     public function addFile(ProductionRequest $request,$id)
     {
-
+      
         if($request->comments){
-            $addComentWithTimestamp= Carbon::now('UTC').' ; '.$request->comments;
-            dd($addComentWithTimestamp);
-            Production::find($id)->update($addComentWithTimestamp);
+            $addComentWithTimestamp = Production::find($id)->comments.Carbon::now().' ; '.$request->comments;
+            Production::find($id)->update(['comments' => $addComentWithTimestamp]);
         }
 
         if($request->file('file'))

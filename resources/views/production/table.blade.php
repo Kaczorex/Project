@@ -20,7 +20,7 @@
 			<tr class="tr-hidden" id="hidden{{$product->id}}" style="">
 				<td colspan="3">
 					<div class="row div-hidden" style="">
-						<div class="col-md-4">1</div>
+						<div class="col-md-4">{{$product->comments}}</div>
 						<div class="col-md-3">2</div>
 						<div class="col-md-4">  
 							@foreach($files as $file)
