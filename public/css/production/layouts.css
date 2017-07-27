@@ -21,3 +21,17 @@ border-left: none;
 	
 
 }
+.div-hidden{
+    background: #FCFCFC;
+    border: 3px solid #CACACA; 
+    margin-top:-8px;
+    border-top:none;
+}
+
+.glyphicon-edit-action{
+    font-size: 22px;
+    float:right;
+    cursor: pointer;
+    color: green;
+
+}

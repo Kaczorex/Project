@@ -17,13 +17,10 @@ class TransportController extends Controller
 
 
     public function index() {
-     
-        
-
+       
     	$date = date('Y-m-d');
 
         $dt =  Carbon::now()->formatLocalized('%A');
-
         $event=DB::table('event_transports')->Where('date',$date)->first();
         if($event==null){
             $event = (object)['event'=>' ',
@@ -31,9 +28,7 @@ class TransportController extends Controller
             
         }
         $transports = Transport::Where('delivry_date',$date)->orderBy('id','asc')->get();
-
         return view('transport.index',compact('transports','dt','date','event'));
-
     }
     public function byDate(TransportByDateRequest $request){
 
@@ -44,7 +39,6 @@ class TransportController extends Controller
         if($event==null){
             $event = (object)['event'=>' ',
             'date'=>'2017-07-10'];
-            
         }
         
         $transports = Transport::Where('delivry_date',$date)->orderBy('id','asc')->get();
@@ -62,8 +56,8 @@ class TransportController extends Controller
     public function edit(Transport $id){
 
         if((Auth::user()->hasAnyRole('Administrator'))||(Auth::user()->hasAnyRole('Dyrektor logistyki'))||(Auth::user()->hasAnyRole('Logistyka')))
-         return view('transport.edit',compact('transport','id','delivry_date_glob'));
-     elseif(Auth::user()->id != $id->user_id)
+           return view('transport.edit',compact('transport','id','delivry_date_glob'));
+       elseif(Auth::user()->id != $id->user_id)
         return redirect()->route('transport.index');
 
 
@@ -90,7 +84,7 @@ public function assign($date){
 }
 public function assignUpdate(TransportByDateRequest $id){
 
-   
+ 
   Transport::find($id->id)->update(['driver'=> $id->driver]);
   
   $date=$id->delivry_date;

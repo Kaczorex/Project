@@ -6,7 +6,7 @@ use App\production;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductionRequest;
 use Illuminate\Support\Facades\Storage;
-
+use Carbon\Carbon;
 
 class ProductionController extends Controller
 {
@@ -18,11 +18,11 @@ class ProductionController extends Controller
     public function index()
     {
         // dd(Storage::disk('Productions')->allFiles());
-     $files = Storage::disk('local')->allFiles('hide');
+       $files = Storage::disk('local')->allFiles('hide');
        // dd(explode('.', $files[0])[1]);
-     $products = Production::all();
-     return view('production.index',compact('products','files'));
- }
+       $products = Production::orderBy('created_at','desc')->get();
+       return view('production.index',compact('products','files'));
+   }
 
 
     /**
@@ -48,8 +48,16 @@ class ProductionController extends Controller
      */
     public function addFile(ProductionRequest $request,$id)
     {
-       
-        $request->file('file')->storeAs('hide/'.$id,$request->file('file')->getClientOriginalName());
+
+        if($request->comments){
+            $addComentWithTimestamp= Carbon::now('UTC').' ; '.$request->comments;
+            dd($addComentWithTimestamp);
+            Production::find($id)->update($addComentWithTimestamp);
+        }
+
+        if($request->file('file'))
+            $request->file('file')->storeAs('hide/'.$id,$request->file('file')->getClientOriginalName());
+
         return redirect()->route('production.index');
     }
 
