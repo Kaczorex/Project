@@ -33,7 +33,7 @@
 						<div class="col-md-7"></div>
 						<div class="col-md-5">
 						<input type="hidden" name="id" value="{{$product->id}}">
-							<input type="file" name="file" class="btn btn-info" onchange='document.getElementById("{{$product->id}}").submit();'>
+							<input type="file" name="file" class="btn btn-info">
 
 						</div>
 					</div>

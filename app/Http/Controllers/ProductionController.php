@@ -50,7 +50,7 @@ class ProductionController extends Controller
     {
       
         if($request->comments){
-            $addComentWithTimestamp = Production::find($id)->comments.Carbon::now().' ; '.$request->comments;
+            $addComentWithTimestamp =  Production::find($id)->comments.' | '.Carbon::now().' ; '.$request->comments;
             Production::find($id)->update(['comments' => $addComentWithTimestamp]);
         }
 
@@ -66,9 +66,13 @@ class ProductionController extends Controller
      * @param  \App\production  $production
      * @return \Illuminate\Http\Response
      */
-    public function show(production $production)
+    public function plus($id)
     {
-        //
+        
+        if(Production::find($id)->progress<100)
+        Production::find($id)->update(['progress' => Production::find($id)->progress+20]);
+
+        return redirect()->route('production.index');
     }
 
     /**
@@ -77,9 +81,12 @@ class ProductionController extends Controller
      * @param  \App\production  $production
      * @return \Illuminate\Http\Response
      */
-    public function edit(production $production)
+    public function minus($id)
     {
-        //
+           if(Production::find($id)->progress>0)
+        Production::find($id)->update(['progress' => Production::find($id)->progress-20]);
+
+        return redirect()->route('production.index');
     }
 
     /**

@@ -43,7 +43,7 @@
               class=" active - aktywny podświetlenie"
               class=" has-sub - + do rozwijania"
               <li class="active has-sub"><a href="#"><span>CRM</span></a> --}}
-                 <li class="" ><a href="#"><span>CRM</span></a></li>
+              {{--    <li class="" ><a href="#"><span>CRM</span></a></li> --}}
                  <li  @if (Request::route()->getName() == 'prefabrykacja.index')  class="active" @else class="none" @endif  ><a href="{{route('prefabrykacja.index')}}"><span>Prefabrykacja</span></a></li>
                 <li @if ((Request::route()->getName() == 'pz.index')||(Request::route()->getName() == 'efaktury.index'))  class="active" @else class="" @endif class="has-sub"><a href="#"><span>Dostawy</span></a>
                     <ul>

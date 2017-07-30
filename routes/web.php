@@ -144,6 +144,13 @@ Route::group([
         Route::POST('/Produkcja/addFile/{id}',[
             'uses' => 'ProductionController@addFile',
             'as' => 'production.addFile']);
+    
+        Route::get('/Produkcja/plus/{id}',[
+            'uses' => 'ProductionController@plus',
+            'as' => 'production.plus']);
+           Route::get('/Produkcja/minus/{id}',[
+            'uses' => 'ProductionController@minus',
+            'as' => 'production.minus']);
     });
 
 
